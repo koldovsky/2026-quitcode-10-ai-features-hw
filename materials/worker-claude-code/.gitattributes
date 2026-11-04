@@ -1,0 +1,2 @@
+# run.sh має лишатися з LF навіть на Windows з core.autocrlf=true, інакше bash не прочитає його
+*.sh text eol=lf

@@ -1,0 +1,11 @@
+{
+  "period": "2026-10",
+  "source": "чернетка зі «звітної системи» (синтетична, з навмисними помилками)",
+  "lines": [
+    { "invoice": "INV-2026-101", "client": "Клієнт А", "invoiced": 12000.0, "paid": 12000.0 },
+    { "invoice": "INV-2026-102", "client": "Клієнт Б", "invoiced": 7500.0, "paid": 7500.0 },
+    { "invoice": "INV-2026-103", "client": "Клієнт В", "invoiced": 10000.0, "paid": 12000.0 },
+    { "invoice": "INV-2026-104", "client": "Клієнт Г", "invoiced": 4200.0, "paid": 4200.0 }
+  ],
+  "totals": { "invoiced": 33700.0, "paid": 35700.0, "outstanding": 0.0, "overpaid": 2000.0 }
+}

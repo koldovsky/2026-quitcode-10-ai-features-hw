@@ -1,0 +1,45 @@
+# Приклад: працівник на Agent SDK за розкладом у GitHub Actions.
+# Працює, лише коли цей набір — КОРІНЬ репозиторію (GitHub читає тільки .github/workflows/ у корені).
+#
+# Секрети (Settings → Secrets and variables → Actions):
+#   варіант A (підтримується):        ANTHROPIC_API_KEY — ключ з Claude Console, оплата за використання;
+#   варіант B (ЕКСПЕРИМЕНТ, не підтримується): OPENROUTER_API_KEY — ваш безкоштовний ключ OpenRouter.
+# Змінна репозиторію WORKER_PROVIDER = anthropic | openrouter (Settings → Variables).
+# Розклад GitHub запускає лише з гілки за замовчуванням, а в публічних репо вимикає після 60 днів без активності.
+name: Розбір заявок за розкладом
+
+on:
+  schedule:
+    - cron: "0 6 * * 1-5" # пн–пт о 06:00 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  triage:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+      # npm ci потребує package-lock.json: він з'явиться після першого `npm i` — закомітьте його у своєму репо.
+      # Без --omit=optional: SDK запускає бінарник Claude Code з optional-залежності для платформи.
+      - run: npm ci
+      - run: npm test
+      - name: Працівник
+        env:
+          WORKER_PROVIDER: ${{ vars.WORKER_PROVIDER }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+        run: node src/worker.ts
+      # Звіт — артефакт запуску, а не коміт: людина читає й вирішує.
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: triage-${{ github.run_id }}
+          path: out/
+          if-no-files-found: warn

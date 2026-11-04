@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "permissions": {
+    "allow": [
+      "Skill(reconciler)",
+      "Agent(reconciler-verifier)",
+      "Bash(node scripts/reconcile.mjs *)",
+      "PowerShell(node scripts/reconcile.mjs *)",
+      "Edit(/out/**)"
+    ],
+    "deny": [
+      "Read(.env)",
+      "Read(.env.*)",
+      "Edit(/data/**)",
+      "Edit(/scripts/**)",
+      "Edit(/references/**)",
+      "Edit(/.claude/**)",
+      "Edit(/.github/**)",
+      "Edit(/AGENTS.md)",
+      "Edit(/CLAUDE.md)",
+      "WebFetch",
+      "WebSearch",
+      "Bash(curl *)",
+      "Bash(wget *)",
+      "Bash(rm *)",
+      "Bash(git push *)",
+      "PowerShell(Invoke-WebRequest *)",
+      "PowerShell(Invoke-RestMethod *)",
+      "PowerShell(Remove-Item *)",
+      "PowerShell(git push *)"
+    ]
+  }
+}

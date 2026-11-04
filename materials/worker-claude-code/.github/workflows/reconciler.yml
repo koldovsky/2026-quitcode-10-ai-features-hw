@@ -1,0 +1,62 @@
+# Запуск звіряльника за розкладом у GitHub Actions (anthropics/claude-code-action@v1).
+# Працює, лише коли цей набір — КОРІНЬ репозиторію (GitHub читає тільки .github/workflows/ у корені).
+#
+# Секрет репозиторію — одне з двох (Settings → Secrets and variables → Actions):
+#   CLAUDE_CODE_OAUTH_TOKEN — токен вашої підписки (Pro, Max, Ultra, Team, Enterprise) з `claude setup-token`,
+#                             діє рік; запуски йдуть у ліміти вашої підписки. Лише для ОСОБИСТОГО використання.
+#   ANTHROPIC_API_KEY       — ключ з Claude Console (оплата за використання); для секрету, спільного кільком репо,
+#                             і для всього, чим користуються інші люди.
+# GitHub запускає розклад лише з гілки за замовчуванням, а в публічних репо вимикає його після 60 днів без активності.
+# Дані тут синтетичні; справжні фінансові дані в публічне репо не кладіть.
+name: Звірка оплат за розкладом
+
+on:
+  schedule:
+    - cron: "0 6 1 * *" # 1-го числа щомісяця о 06:00 UTC
+  workflow_dispatch:
+    inputs:
+      period:
+        description: "Тека періоду в data/ (напр. 2026-10)"
+        required: true
+        default: "2026-10"
+
+permissions:
+  contents: read
+  id-token: write # потрібен claude-code-action для автентифікації GitHub App за замовчуванням
+
+jobs:
+  reconcile:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      # Скіл має лежати на раннері: спершу checkout, потім /reconciler як prompt.
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 1
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+      - name: Період
+        id: period
+        env:
+          INPUT_PERIOD: ${{ github.event.inputs.period }} # через env, а не ${{ }} у скрипті: так ввід не стане кодом
+        run: |
+          p="${INPUT_PERIOD:-$(date -u -d 'last month' +%Y-%m)}"
+          case "$p" in [0-9][0-9][0-9][0-9]-[0-9][0-9]) ;; *) echo "Період має бути РРРР-ММ: $p"; exit 1;; esac
+          echo "value=$p" >> "$GITHUB_OUTPUT"
+      - uses: anthropics/claude-code-action@v1
+        with:
+          claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          # або: anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          prompt: "/reconciler data/${{ steps.period.outputs.value }}"
+          claude_args: |
+            --max-turns 30
+            --permission-mode dontAsk
+            --allowedTools "Skill(reconciler),Agent(reconciler-verifier),Bash(node scripts/reconcile.mjs *),Read,Grep,Glob,Edit(/out/**)"
+      # Звіт лишається артефактом запуску, а не комітом: людина читає й вирішує.
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: reconciler-report-${{ steps.period.outputs.value }}
+          path: out/
+          if-no-files-found: warn

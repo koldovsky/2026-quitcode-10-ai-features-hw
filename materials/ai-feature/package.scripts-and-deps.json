@@ -1,0 +1,19 @@
+{
+  "_як_застосувати": [
+    "НЕ копіюйте цей файл замість package.json. Залежності ставте командою (версії точні, як решта залежностей шаблону):",
+    "npm i --save-exact ai@7.0.162 @openrouter/ai-sdk-provider@3.1.0 zod@4.6.7 server-only@0.0.1",
+    "Потім допишіть три рядки з блоку scripts у розділ scripts вашого package.json.",
+    "Нові залежності — «Спитай спершу» в AGENTS.md і ADR: docs/decisions/NNNN-ai-feature-openrouter.md."
+  ],
+  "dependencies": {
+    "@openrouter/ai-sdk-provider": "3.1.0",
+    "ai": "7.0.162",
+    "server-only": "0.0.1",
+    "zod": "4.6.7"
+  },
+  "scripts": {
+    "eval": "vitest run -c vitest.eval.config.mts",
+    "ai:models": "node scripts/free-models.mjs",
+    "ai:quota": "node --env-file-if-exists=.env.local scripts/quota.mjs"
+  }
+}
