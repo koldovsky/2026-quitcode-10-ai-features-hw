@@ -5,8 +5,8 @@ import { makeProductModel } from "./models";
 //   локально — у .env.local (він у .gitignore); у проді — Vercel → Project Settings → Environment Variables.
 // НІКОЛИ не з префіксом NEXT_PUBLIC_: такі значення вбудовуються в JavaScript для браузера.
 // Цей файл — єдине місце в src/, яке читає ключ (це перевіряє tests/ai-key.test.ts).
+// Немає ключа (або лише пробіли) → null: функція з AI вимикається, а ручна форма працює далі.
 export function productModel() {
-  const key = process.env.OPENROUTER_API_KEY;
-  if (!key) throw new Error("OPENROUTER_API_KEY is not set");
-  return makeProductModel(key);
+  const key = process.env.OPENROUTER_API_KEY?.trim();
+  return key ? makeProductModel(key) : null;
 }

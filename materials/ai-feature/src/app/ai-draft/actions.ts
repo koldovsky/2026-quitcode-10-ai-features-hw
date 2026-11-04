@@ -30,7 +30,9 @@ export async function requestDraft(_prev: RequestDraftState, formData: FormData)
       ? { text, file: { data: new Uint8Array(await file.arrayBuffer()), mediaType, filename: file.name } }
       : { text };
 
-  const result = await proposeDraft(input, productModel());
+  const model = productModel();
+  if (!model) return { ok: false, reason: "provider_error", message: "no model key", userMessage: USER_MESSAGES.provider_error };
+  const result = await proposeDraft(input, model);
   return result.ok ? result : { ...result, userMessage: USER_MESSAGES[result.reason] };
 }
 
