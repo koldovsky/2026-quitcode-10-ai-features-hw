@@ -92,7 +92,7 @@ CLAUDE_CODE_DISABLE_EXPERIMENTAL_BETAS=1
 - Anthropic: «doesn't support routing Claude Code to non-Claude models through any gateway» (сторінка LLM gateway
   у документації Claude Code). OpenRouter гарантує роботу Claude Code лише тоді, коли запити йдуть до самої Anthropic (first-party provider).
   Тобто може зламатися на будь-якому кроці — це нормальний результат експерименту, запишіть, де саме.
-- Безкоштовних моделей Claude на OpenRouter немає (04.11.2026: 16 безкоштовних моделей, жодної `anthropic/`).
+- Безкоштовних моделей Claude на OpenRouter немає (станом на 04.11.2026 серед безкоштовних моделей OpenRouter жодної `anthropic/`).
 - `total_cost_usd` і `maxBudgetUsd` рахуються за цінами Claude, тож для OpenRouter **це не стеля витрат**.
   Стелю ставте в налаштуваннях ключа OpenRouter і тримайте в ланцюжку лише `:free` моделі.
 - Ліміт безкоштовного рівня: 20 запитів/хв і 50 на добу на акаунт (1000 на добу після купівлі ≥10 кредитів);
@@ -119,7 +119,7 @@ npm run check && npm test && npm run dry-run
 ## Де запускати
 
 - **Локально або за розкладом:** Планувальник завдань Windows
-  (`schtasks /Create /TN "QuitCode triage" /SC WEEKLY /D MON /ST 09:00 /TR "cmd /c cd /d D:\шлях\до\worker-agent-sdk && npm start"`)
+  (`schtasks /Create /TN "Triage worker" /SC WEEKLY /D MON /ST 09:00 /TR "cmd /c cd /d D:\шлях\до\worker-agent-sdk && npm start"`)
   чи cron (`0 9 * * 1 cd /шлях/до/worker-agent-sdk && npm start >> out/cron.log 2>&1`).
 - **GitHub Actions:** `.github/workflows/worker.yml` (коли набір — корінь репо). Без `npm ci --omit=optional`:
   ця опція викидає бінарник Claude Code, і SDK не запуститься.

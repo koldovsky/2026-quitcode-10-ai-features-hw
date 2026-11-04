@@ -1,0 +1,27 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(./**)",
+      "Bash(node scripts/parse-statement.mjs *)",
+      "Bash(node scripts/check-declaration.mjs *)",
+      "Bash(node scripts/reconcile.mjs *)",
+      "PowerShell(node scripts/parse-statement.mjs *)",
+      "PowerShell(node scripts/check-declaration.mjs *)",
+      "PowerShell(node scripts/reconcile.mjs *)"
+    ],
+    "deny": [
+      "WebFetch",
+      "WebSearch",
+      "Bash(curl *)",
+      "Bash(wget *)",
+      "Bash(node -e *)",
+      "Bash(npm *)",
+      "Bash(npx *)",
+      "Read(./.env*)",
+      "Edit(./data/**)",
+      "Edit(./references/**)",
+      "Edit(./scripts/**)",
+      "Edit(./.claude/**)"
+    ]
+  }
+}

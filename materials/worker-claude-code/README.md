@@ -47,7 +47,7 @@ run.sh, run.ps1                   запуск без людини (cron / Пл�
 
 Потрібні: Node 24 і Claude Code з входом у вашу підписку (`claude`, потім `/login`).
 
-1. Скопіюйте теку `worker-claude-code` окремо (або зробіть з неї окреме приватне репо) і відкрийте термінал у ній.
+1. Скопіюйте теку `worker-claude-code` окремо (або зробіть з неї окреме репо; для бонусу WS10 воно має бути **публічним**, бо перевірка статична, за SHA) і відкрийте термінал у ній.
 2. Перевірка без моделі — скрипт сам по собі:
 
    ```bash
@@ -97,7 +97,7 @@ https://code.claude.com/docs/en/cli-reference.
 **Windows — Планувальник завдань** (щомісяця 1-го о 09:00, від вашого користувача, коли ви в системі):
 
 ```powershell
-schtasks /Create /TN "QuitCode reconciler" /SC MONTHLY /D 1 /ST 09:00 /TR "powershell -NoProfile -ExecutionPolicy Bypass -File \"D:\шлях\до\worker-claude-code\run.ps1\""
+schtasks /Create /TN "Reconciler worker" /SC MONTHLY /D 1 /ST 09:00 /TR "powershell -NoProfile -ExecutionPolicy Bypass -File \"D:\шлях\до\worker-claude-code\run.ps1\""
 ```
 
 Без `-Period` обидва скрипти беруть демо-період `2026-10`. Для справжньої роботи змініть значення за
