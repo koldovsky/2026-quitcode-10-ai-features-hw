@@ -88,6 +88,9 @@ $B = "https://raw.githubusercontent.com/koldovsky/2026-quitcode-10-ai-features-h
 4. **Власний безкоштовний ключ OpenRouter** — [models.md, «Ключ за 5 хвилин»](models.md#ключ-за-5-хвилин): акаунт,
    ключ у `.env.local` (лише там), налаштування приватності. Ключ не вставляйте в чат з агентом.
 
+Ніколи не викликали модель з коду? Спершу [L1–L3](prompts.md#l1) на [демо драбини](https://github.com/koldovsky/2026-quitcode-10-llm-ladder-demo) — 30–45 хв,
+≈ 12 запитів; балів не дає.
+
 **Доказ:** зелений `smoke` на `main`; `/api/health` з `"db":"ok"` і SHA `main`.
 
 ## 1. Вимоги й спека зрізу 4 (1,5–2 год) — трек A
