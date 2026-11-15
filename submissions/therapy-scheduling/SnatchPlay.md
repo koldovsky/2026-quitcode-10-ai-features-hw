@@ -29,7 +29,7 @@
 - AC зрізу 4: AC-INTAKE-01, AC-INTAKE-02, AC-INTAKE-03, AC-INTAKE-04, AC-INTAKE-05, AC-INTAKE-06, AC-INTAKE-07, AC-INTAKE-08, AC-INTAKE-09
 - `/requirements-sync` — PR «Оновлення вимог»: https://github.com/SnatchPlay/therapy-scheduling/pull/77
 - Спека `add-intake-draft` і план з розділом «AI» — PR «Специфікація»: https://github.com/SnatchPlay/therapy-scheduling/pull/78 (спека) і https://github.com/SnatchPlay/therapy-scheduling/pull/79 (план `impl-intake-draft`, `design.md` з розділом про AI)
-- Після уточнень PM: /requirements-sync 2026-11-14: вимога зрізу 4 (issue 36) востаннє оновлена PM 2026-11-13, після знімка змін немає
+- Після уточнень PM: /requirements-sync 2026-11-14: Вимоги актуальні (вимогу зрізу 4, issue 36, PM востаннє оновила 2026-11-13, до знімка)
 - Golden cases PM у `cases.json`: https://github.com/SnatchPlay/therapy-scheduling/blob/78f00d6b8e4327ba2da3818b3796d0ba0b924dd6/tests/fixtures/golden/cases.json — ті самі GC-01…10, що в PM; тимчасових кейсів немає
 - ADR на залежності: https://github.com/SnatchPlay/therapy-scheduling/blob/78f00d6b8e4327ba2da3818b3796d0ba0b924dd6/docs/decisions/0008-ai-feature-claude-api.md (поточне рішення: Claude API) і https://github.com/SnatchPlay/therapy-scheduling/blob/78f00d6b8e4327ba2da3818b3796d0ba0b924dd6/docs/decisions/0006-ai-feature-openrouter.md (перший варіант на OpenRouter, замінено ADR 0008)
 - Питання PM: питань не було
@@ -55,10 +55,10 @@
 
 ### Прод, UAT і приймання PM (трек D)
 
-- Зріз 4 на проді: `/api/health` показує SHA злиття `78f00d6b8e4327ba2da3818b3796d0ba0b924dd6`; міграцію `intake_draft_quota` застосовано `db-deploy` у https://github.com/SnatchPlay/therapy-scheduling/actions/runs/43614869500
+- Зріз 4 на проді: https://therapy-scheduling-weld.vercel.app/api/health показує SHA злиття `78f00d6b8e4327ba2da3818b3796d0ba0b924dd6`; міграцію `intake_draft_quota` застосовано `db-deploy` у https://github.com/SnatchPlay/therapy-scheduling/actions/runs/43614869500
 - UAT на проді (≥ 2 AC): https://github.com/SnatchPlay/therapy-scheduling/tree/78f00d6b8e4327ba2da3818b3796d0ba0b924dd6/docs/qa/uat/2026-11-15-intake-draft — AC-INTAKE-06 (відмова) PASS; AC-INTAKE-03 (чернетка не створює картку) — перевірки пройшли, але вердикт агента NEEDS-HUMAN: на проді вже була картка «Client Ten», створена до UAT, тому тест доводить незмінну кількість карток до й після чернетки, а не їх відсутність. Рішення за PM. Прод-UAT знайшов і виправив дубль панелі після відповіді (PR 85)
 - `docs/conformance.md`: https://github.com/SnatchPlay/therapy-scheduling/blob/78f00d6b8e4327ba2da3818b3796d0ba0b924dd6/docs/conformance.md — усі AC-INTAKE-01…09 «реалізовано»
-- «eval готовий» у чаті команди: живий eval 14.11 (UTC-доба 14.11); дату повідомлення в чаті вкажу коментарем у цьому PR
+- «eval готовий» у чаті команди: повідомлення в чаті команди ще не надіслано, надішлю до 16.11 і вкажу дату коментарем у цьому PR; живий eval — 14.11 (UTC-доба 14.11)
 - Відхилення від PM: не надходило (станом на здачу); виправлення після здачі — коментарем «Виправлено: …» в issue до 18:00 Пн 16.11
 - Акаунти для нових ролей зрізу 4: нових ролей немає
 
