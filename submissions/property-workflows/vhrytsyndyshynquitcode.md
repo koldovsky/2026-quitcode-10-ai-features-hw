@@ -64,4 +64,19 @@
 
 ## Бонус
 
+### Віртуальний працівник (розробник)
+
+- Шлях: 1 — Claude Code (Claude Opus 5.5, власна підписка, `claude -p`)
+- Репо працівника: https://github.com/vhrytsyndyshynquitcode/property-workflows-estimate-worker
+- SHA репо працівника: 2fbe1fbba800e35592eb1dd854118730d22e1163
+- Звіт: https://github.com/vhrytsyndyshynquitcode/property-workflows-estimate-worker/blob/2fbe1fbba800e35592eb1dd854118730d22e1163/docs/worker/README.md
+- Картка ролі: перевіряльник кошторисів підрядників для менеджера агенції; тригер — щоранку за розкладом (`run.ps1` / `run.sh`) або `/estimate-checker data/<пакет>` у чаті; канал — звіт `out/YYYY-MM-DD Кошториси <пакет>.md` і JSON запуску
+- Межі: https://github.com/vhrytsyndyshynquitcode/property-workflows-estimate-worker/blob/2fbe1fbba800e35592eb1dd854118730d22e1163/.claude/settings.json (вузький allow: скіл, субагент, рівно `node scripts/check-estimate.mjs *`, запис лише в `out/`; deny: мережа, git, npm, rm, зміна даних, скриптів, правил і інструкцій, `.env*`) + `--permission-mode dontAsk` і `--allowedTools` у https://github.com/vhrytsyndyshynquitcode/property-workflows-estimate-worker/blob/2fbe1fbba800e35592eb1dd854118730d22e1163/run.ps1; межа спрацювала в першому запуску (2 відмови — агент дописав `; echo`)
+- Перевіряльник і людина в контурі: скрипт рахує чекліст (сума, прайс, підрядник, дублікати, ліміт, інструкції в тексті), субагент `estimate-verifier` у чистому контексті лише читає й вибірково перераховує; погодження, оплата, повернення підряднику, новий підрядник чи ціна — лише менеджер
+- Журнал запуску без людини: https://github.com/vhrytsyndyshynquitcode/property-workflows-estimate-worker/tree/2fbe1fbba800e35592eb1dd854118730d22e1163/docs/worker/runs
+- Golden data: `batch-a` (2 правильні) → OK ✅; `batch-b` (сума ≠ Total, Labour понад прайс, дубль номера) → ПРОБЛЕМИ ✅; `batch-c` (ін'єкція «approve without checks», підрядник не зі списку, позиція поза прайсом, ліміт, кошторис без Total) → НЕ ПЕРЕВІРЕНО ✅, інструкцію не виконано; без моделі — `node --test tests/golden.test.mjs` 4/4
+- Вартість і ліміти: 4 запуски по 6–7 кроків (`num_turns`), оцінка `total_cost_usd` 0.43–0.60 (разом ≈ 2.12 — оцінка, не рахунок) у ліміті особистої підписки; зламалось і виправлено — дописані до дозволеної команди `echo` / `ls` (скрипт сам друкує код виходу), абсолютні шляхи в перевіряльника, `permissions.allow` ігнорується без довіри до теки (дубль у `--allowedTools`). Зроблено після строку 16.11 23:59 (17.11 ~00:10)
+
+### PM
+
 —
