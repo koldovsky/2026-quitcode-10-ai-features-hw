@@ -56,7 +56,7 @@
 ### Прод, UAT і приймання PM (трек D)
 
 - Зріз 4 на проді: https://property-workflows-one.vercel.app/api/health — sha 03eccc8; db-deploy з «Applying migration 20261116161535_doc_records.sql» — https://github.com/vhrytsyndyshynquitcode/property-workflows/actions/runs/43956235025 (коміт 943ba87, злиття PR #55)
-- UAT на проді (≥ 2 AC): не зроблено на проді — специфікації https://github.com/vhrytsyndyshynquitcode/property-workflows/blob/2378758ffba1733287ba60fbd8848ed3f9ab0458/tests/e2e/doc-parsing.spec.ts (AC-DOCAI-04 «людина підтверджує», AC-DOCAI-14 «вендор не бачить блоку») зелені в CI e2e на одноразовому Supabase: https://github.com/vhrytsyndyshynquitcode/property-workflows/actions/runs/43956234934; прогін на проді потребує ключів основного проєкту в локальному `.env.local`
+- UAT на проді (≥ 2 AC): https://github.com/vhrytsyndyshynquitcode/property-workflows/tree/e856f66d1e56025a6c493e1c89426a3779c960c9/docs/qa/uat/2026-11-16 (16.11, прод https://property-workflows-one.vercel.app, SHA 2378758) — AC-DOCAI-04 «людина підтверджує перед записом»: перевірки ✅, агент PASS, вердикт NEEDS-HUMAN за R4 (цитати «Phone 555-0101» тощо розбиті в aria на dt/dd), рішення за PM; AC-DOCAI-14 «вендор не бачить блоку»: PASS (R6). Коміт звіту — гілка task/uat-doc-parsing (PR у main відкрито після 23:50, злиття — після CI)
 - `docs/conformance.md`: https://github.com/vhrytsyndyshynquitcode/property-workflows/blob/2378758ffba1733287ba60fbd8848ed3f9ab0458/docs/conformance.md — AC-DOCAI-01 … AC-DOCAI-16: реалізовано (код і тести)
 - «eval готовий» у чаті команди: 16.11, eval 16.11 (UTC-доба 2026-11-16)
 - Відхилення від PM: не надходило
