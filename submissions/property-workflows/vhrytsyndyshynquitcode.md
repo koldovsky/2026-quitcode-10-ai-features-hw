@@ -19,7 +19,7 @@
 ### D0 — умова прийняття
 
 - `/api/health`: https://property-workflows-one.vercel.app/api/health — `"db":"ok"`, `sha` = 2378758ffba1733287ba60fbd8848ed3f9ab0458
-- Зелений прогін `smoke` на `main`: https://github.com/vhrytsyndyshynquitcode/property-workflows/actions/runs/43958691276
+- Зелений прогін `smoke` на `main`: https://github.com/vhrytsyndyshynquitcode/property-workflows/actions/runs/43962519345
 - `accounts.zip` на SHA: https://github.com/vhrytsyndyshynquitcode/property-workflows/blob/2378758ffba1733287ba60fbd8848ed3f9ab0458/accounts.zip
 - Ролі тестових акаунтів: адміністратор — pm-admin@example.test; менеджер — pm-manager@example.test; вендор — pm-vendor@example.test (нових ролей у зрізі 4 немає)
 - Версія `next`: next@16.4.3
