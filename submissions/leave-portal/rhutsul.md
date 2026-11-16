@@ -33,8 +33,10 @@
 - Спека `add-<зріз4>` і план з розділом «AI» — PR «Специфікація»: https://github.com/rhutsul/leave-portal/pull/78
   (спека `add-calendar-assistant`), https://github.com/rhutsul/leave-portal/pull/79 (план `impl-calendar-assistant`,
   розділ «AI»: моделі, схема, стани, межа `<document>`, golden)
-- Після уточнень PM: уточнень ще не було — питання Q12 без відповіді PM; вимоги — знімок 2026-11-13 (PR #77), до
-  відповіді діє власне припущення, записане в Open questions спеки
+- Після уточнень PM: `/requirements-sync 2026-11-16: Вимоги актуальні` — останній коміт репо вимог PM `a0de666`
+  (13.11) збігається зі знімком у PR https://github.com/rhutsul/leave-portal/pull/77; відповідь PM на Q12
+  (https://github.com/mkozlovskyi-ops/course-staff-management-spec/issues/27) ще очікується, до неї діє власне
+  припущення з Open questions спеки
 - Golden cases PM у `cases.json`: https://github.com/rhutsul/leave-portal/blob/2de3a3e9b3d198c4fa6cd6963e12c3e9bf139128/tests/fixtures/golden/cases.json — GC-01…GC-10, ті самі ID, що в PM
 - ADR на залежності: https://github.com/rhutsul/leave-portal/blob/2de3a3e9b3d198c4fa6cd6963e12c3e9bf139128/docs/decisions/0009-ai-feature-openrouter.md
 - Питання PM: https://github.com/mkozlovskyi-ops/course-staff-management-spec/issues/27
