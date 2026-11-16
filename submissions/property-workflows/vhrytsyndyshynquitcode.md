@@ -55,7 +55,7 @@
 
 ### Прод, UAT і приймання PM (трек D)
 
-- Зріз 4 на проді: https://property-workflows-one.vercel.app/api/health — sha 03eccc8; db-deploy з «Applying migration 20261116161535_doc_records.sql» — https://github.com/vhrytsyndyshynquitcode/property-workflows/actions/runs/43958623647
+- Зріз 4 на проді: https://property-workflows-one.vercel.app/api/health — sha 03eccc8; db-deploy з «Applying migration 20261116161535_doc_records.sql» — https://github.com/vhrytsyndyshynquitcode/property-workflows/actions/runs/43956235025 (коміт 943ba87, злиття PR #55)
 - UAT на проді (≥ 2 AC): не зроблено на проді — специфікації https://github.com/vhrytsyndyshynquitcode/property-workflows/blob/03eccc86880435f99382d1bb4db69bf13eb0a920/tests/e2e/doc-parsing.spec.ts (AC-DOCAI-04 «людина підтверджує», AC-DOCAI-14 «вендор не бачить блоку») зелені в CI e2e на одноразовому Supabase: https://github.com/vhrytsyndyshynquitcode/property-workflows/actions/runs/43956234934; прогін на проді потребує ключів основного проєкту в локальному `.env.local`
 - `docs/conformance.md`: https://github.com/vhrytsyndyshynquitcode/property-workflows/blob/03eccc86880435f99382d1bb4db69bf13eb0a920/docs/conformance.md — AC-DOCAI-01 … AC-DOCAI-16: реалізовано (код і тести)
 - «eval готовий» у чаті команди: не надіслано — живого eval ще не було
