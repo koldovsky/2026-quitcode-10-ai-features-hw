@@ -66,7 +66,7 @@
 - UAT на проді (≥ 2 AC): https://github.com/mvorobets-blip/school-purchasing/tree/8206d757c11af8e3a088eaa1730b310428104f30/docs/qa/uat/2026-11-16/ — AC-AI-01 (людина підтверджує: рядок у формі, закупівлю не подано; перевірки й обидва агенти — PASS, підсумок NEEDS-HUMAN за R4 лише через «20,00» на кадрі — локаль браузера тесту, значення поля «20.00»; рішення PM) і AC-AI-02 (відмова, PASS); main @ b8dfdde, чисте дерево; відео — у PR https://github.com/mvorobets-blip/school-purchasing/pull/82
 - `docs/conformance.md`: https://github.com/mvorobets-blip/school-purchasing/blob/8206d757c11af8e3a088eaa1730b310428104f30/docs/conformance.md — AC-AI-01…06 «реалізовано»
 - «eval готовий» у чаті команди: 16.11, eval 16.11 (UTC)
-- Відхилення від PM: не надходило (станом на здачу)
+- Відхилення від PM: не надходило. Приймання PM 16.11: AC-AI-01…06 — 3 з 3 кожен, golden 9/9 на проді (+ № 8 за UAT), «відхилень від вимог немає»; NEEDS-HUMAN AC-AI-01 у UAT PM визнала вадою тесту (локаль кадру), не продукту — https://github.com/mvorobets-blip/school-purchasing/pull/82#issuecomment-6922231060
 - Акаунти для нових ролей зрізу 4: нових ролей немає (помічник — для працівника `requester` і `approver`)
 
 ## Бонус
