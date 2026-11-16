@@ -58,7 +58,7 @@
 - Зріз 4 на проді: https://therapy-scheduling-weld.vercel.app/api/health показує SHA злиття `78f00d6b8e4327ba2da3818b3796d0ba0b924dd6`; міграцію `intake_draft_quota` застосовано `db-deploy` у https://github.com/SnatchPlay/therapy-scheduling/actions/runs/43614869500
 - UAT на проді (≥ 2 AC): https://github.com/SnatchPlay/therapy-scheduling/tree/78f00d6b8e4327ba2da3818b3796d0ba0b924dd6/docs/qa/uat/2026-11-15-intake-draft — AC-INTAKE-06 (відмова) PASS; AC-INTAKE-03 (чернетка не створює картку) — перевірки пройшли, але вердикт агента NEEDS-HUMAN: на проді вже була картка «Client Ten», створена до UAT, тому тест доводить незмінну кількість карток до й після чернетки, а не їх відсутність. Рішення за PM. Прод-UAT знайшов і виправив дубль панелі після відповіді (PR 85)
 - `docs/conformance.md`: https://github.com/SnatchPlay/therapy-scheduling/blob/78f00d6b8e4327ba2da3818b3796d0ba0b924dd6/docs/conformance.md — усі AC-INTAKE-01…09 «реалізовано»
-- «eval готовий» у чаті команди: повідомлення в чаті команди ще не надіслано, надішлю до 16.11 і вкажу дату коментарем у цьому PR; живий eval — 14.11 (UTC-доба 14.11)
+- «eval готовий» у чаті команди: повідомлення в чаті команди надіслано 16.11, живий eval — 14.11 (UTC-доба 14.11)
 - Відхилення від PM: не надходило (станом на здачу); виправлення після здачі — коментарем «Виправлено: …» в issue до 18:00 Пн 16.11
 - Акаунти для нових ролей зрізу 4: нових ролей немає
 
