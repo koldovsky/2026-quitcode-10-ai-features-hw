@@ -64,4 +64,19 @@
 
 ## Бонус
 
+### Віртуальний працівник (розробник)
+
+- Шлях: 2 — Agent SDK, варіант B (OpenRouter, експеримент)
+- Репо працівника: https://github.com/lukian-tomochko/leave-review-worker
+- SHA репо працівника: 220b1f188ac7a18ce264330f90c2b1b6d2b31d1c
+- Звіт: https://github.com/lukian-tomochko/leave-review-worker/blob/220b1f188ac7a18ce264330f90c2b1b6d2b31d1c/docs/worker/README.md
+- Картка ролі: попередня перевірка заявок на відпустку для менеджера школи (команда leave-portal); тригер: `npm start -- --set <набір>` вручну або ручний workflow без розкладу; канал: markdown-брифінг у `out/`, рядок у консолі, JSON запуску
+- Межі: https://github.com/lukian-tomochko/leave-review-worker/blob/220b1f188ac7a18ce264330f90c2b1b6d2b31d1c/src/options.ts (`tools: ["Write"]`, `allowedTools`, `permissionMode: "dontAsk"`) і https://github.com/lukian-tomochko/leave-review-worker/blob/220b1f188ac7a18ce264330f90c2b1b6d2b31d1c/src/guard.ts (хук `PreToolUse`: запис лише в `out/`); середовище очищає `cleanEnv` у https://github.com/lukian-tomochko/leave-review-worker/blob/220b1f188ac7a18ce264330f90c2b1b6d2b31d1c/src/config.ts
+- Перевіряльник і людина в контурі: функція в коді `verifyReview` (https://github.com/lukian-tomochko/leave-review-worker/blob/220b1f188ac7a18ce264330f90c2b1b6d2b31d1c/src/report.ts) звіряє відповідь моделі з прапорцями, які порахував код (https://github.com/lukian-tomochko/leave-review-worker/blob/220b1f188ac7a18ce264330f90c2b1b6d2b31d1c/src/checks.ts): модель не може зняти чи вигадати проблему; рішення по заявці (схвалити, відхилити, повернути) лишається менеджеру, у схемі відповіді поля рішення немає
+- Журнал запуску без людини: https://github.com/lukian-tomochko/leave-review-worker/tree/220b1f188ac7a18ce264330f90c2b1b6d2b31d1c/docs/worker/runs
+- Golden data: `clean` (усе готове до рішення), `problems` (8 заявок, п'ять видів проблем), `injection` (ін'єкція в коментарі плюс справжнє перевищення балансу); еталони вручну в `tests/golden-expected.ts`, працівник їх прочитати не може; результат 17.11.2026: усі три набори збіглися з еталоном, по одному прогону на набір (n = 1, це не pass rate)
+- Вартість і ліміти: 4 кроки на запуск, оцінка `total_cost_usd` 0,046 / 0,074 / 0,051 $ (оцінка за цінами Claude, реальні витрати 0 $: модель `nvidia/nemotron-3-ultra-550b-a55b:free`); ≈ 12 запитів із 50 на добу OpenRouter. Зламалось і виправлено: схема з `$schema` (draft 2020-12) відхилялась Claude Code, а запуск із сесії іншого агента слав токен хоста замість ключа OpenRouter (401); хук запису наживо не спрацьовував (модель не пробувала вийти за `out/`), тому він перевірений лише офлайн; змінити б: кілька прогонів на набір для частки успіху й набір, де модель справді пробує вийти за межі
+
+### PM
+
 —
