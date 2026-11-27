@@ -6,7 +6,8 @@
 - Команда: property-workflows
 - GitHub-логін: yuriivynar
 - Ваше репо: https://github.com/yuriivynar/property-workflows
-- SHA: 94b67a2d50a2a9d69ed77c4eba4b04aaea20b2dd
+- SHA: 4d13688a7338e6d0a24573460b9ed5ba0129a177
+- SHA на дедлайн: 94b67a2d50a2a9d69ed77c4eba4b04aaea20b2dd (посилання нижче, закріплені на ньому, показують стан на дедлайн)
 - Репо вимог PM: https://github.com/solomchaak/property-workflows-spec
 - Прод-URL: https://property-workflows-eta.vercel.app
 
@@ -82,3 +83,15 @@
 ### PM
 
 —
+
+## Після рев'ю (27.11.2026)
+
+Поле SHA вище — поточний `main` із виправленнями за рев'ю; стан на дедлайн — «SHA на дедлайн».
+
+1. **Ліміт запитів до моделі** — таблиця `ai_requests` і `private.take_ai_request()` (https://github.com/yuriivynar/property-workflows/blob/4d13688a7338e6d0a24573460b9ed5ba0129a177/supabase/migrations/20261117092135_ai_requests_limits_and_profile_email_sync.sql#L11; https://github.com/yuriivynar/property-workflows/pull/93). Зроблено після SHA на дедлайн.
+2. **Межі значень документа в базі** — `run_document_values_shape_check`: ті самі ключі, типи й межі, що в zod (https://github.com/yuriivynar/property-workflows/blob/4d13688a7338e6d0a24573460b9ed5ba0129a177/supabase/migrations/20261126224855_least_privilege_defaults_and_document_fields.sql#L129), DB-тести на прямий insert (https://github.com/yuriivynar/property-workflows/pull/134).
+3. **Вирізання тегів `<document>` до стабільного результату** — NFKC, без символів нульової ширини, у циклі (https://github.com/yuriivynar/property-workflows/blob/4d13688a7338e6d0a24573460b9ed5ba0129a177/src/lib/ai/prompts/draft.ts#L57-L69; https://github.com/yuriivynar/property-workflows/pull/134).
+4. **Golden cases точно за правилом PM** — примітку «possible gas leak» пише код за прапорцем моделі `gasLeakRisk` (https://github.com/yuriivynar/property-workflows/blob/4d13688a7338e6d0a24573460b9ed5ba0129a177/src/lib/documents/values.ts#L108-L112), GC-06 перевіряє точне поле `notes` (https://github.com/yuriivynar/property-workflows/blob/4d13688a7338e6d0a24573460b9ed5ba0129a177/tests/fixtures/golden/cases.json#L48); суддя — завжди інша родина, ніж відповідь (https://github.com/yuriivynar/property-workflows/blob/4d13688a7338e6d0a24573460b9ed5ba0129a177/docs/decisions/0013-ai-model-order-and-judge.md; https://github.com/yuriivynar/property-workflows/pull/134, https://github.com/yuriivynar/property-workflows/pull/135).
+5. **Доказ eval з одного повного прогону** — ще ні. `docai-v5` дав 10 з 10, але через 429 постачальника підсумок зібрано з трьох прогонів 27.11 (розбір і застереження — https://github.com/yuriivynar/property-workflows/blob/4d13688a7338e6d0a24573460b9ed5ba0129a177/evals/reports/README.md#L100); повна спроба того ж дня теж зупинилась на 429. Повторю один повний прогін після оновлення ліміту й додам звіт сюди.
+
+- Зелений CI на `main @ 4d13688`: https://github.com/yuriivynar/property-workflows/actions/runs/45981475618; smoke проду на тому самому коміті: https://github.com/yuriivynar/property-workflows/actions/runs/45981549148.
